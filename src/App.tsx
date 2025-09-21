@@ -1,13 +1,87 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { 
-  BookOpen, Brain, MessageCircle, TrendingUp, Home, Volume2, RotateCcw, 
-  Check, X, Play, Eye, EyeOff, Award, Calendar, Target, ChevronLeft, 
-  ChevronRight, SkipForward, Star, Lock, Unlock, Mic, MicOff, 
-  Headphones, Globe, Flame, Trophy, Zap, Users, Coffee, Map
+  BookOpen, Brain, MessageCircle, Volume2, RotateCcw, 
+  Check, X, Eye, EyeOff, Target, ChevronLeft, 
+  ChevronRight, Star, Lock, Unlock, Mic, MicOff, 
+  Globe, Flame, Trophy
 } from 'lucide-react';
 
+// TypeScript Interfaces
+interface Vocabulary {
+  id: number;
+  english: string;
+  spanish: string;
+  pronunciation: string;
+  example: string;
+  translation: string;
+}
+
+interface GrammarRule {
+  concept: string;
+  usage: string;
+  example: string;
+}
+
+interface Grammar {
+  title: string;
+  explanation: string;
+  rules: GrammarRule[];
+}
+
+interface DialogueLine {
+  speaker: string;
+  spanish: string;
+  english: string;
+  blank: string;
+  options: string[];
+}
+
+interface Dialogue {
+  title: string;
+  scenario: string;
+  lines: DialogueLine[];
+}
+
+interface Lesson {
+  id: number;
+  title: string;
+  vocabulary: Vocabulary[];
+  grammar: Grammar;
+  dialogue: Dialogue;
+}
+
+interface Level {
+  title: string;
+  color: string;
+  lessons: Lesson[];
+}
+
+interface UserProgress {
+  completedLessons: number[];
+  vocabularyMastered: number[];
+  grammarCompleted: number[];
+  xpPoints: number;
+  currentStreak: number;
+  lastPracticeDate: string | null;
+  spokenWords: string[];
+  dialoguesCompleted: string[];
+}
+
+interface FlashcardState {
+  currentIndex: number;
+  isFlipped: boolean;
+  showPronunciation: boolean;
+}
+
+interface DialogueState {
+  currentLineIndex: number;
+  userAnswers: Record<number, string>;
+  showTranslations: boolean;
+  completedBlanks: Record<number, { answer: string; isCorrect: boolean }>;
+}
+
 // Enhanced Data Structure
-const LESSON_STRUCTURE = {
+const LESSON_STRUCTURE: Record<string, Level> = {
   beginner: {
     title: "Beginner",
     color: "from-green-400 to-blue-500",
@@ -133,12 +207,11 @@ const CULTURAL_FACTS = [
 
 const EnhancedSpanishLearningApp = () => {
   // Core State
-  const [currentView, setCurrentView] = useState('dashboard');
-  const [currentLesson, setCurrentLesson] = useState(null);
-  const [currentActivity, setCurrentActivity] = useState('overview');
+  const [currentLesson, setCurrentLesson] = useState<Lesson | null>(null);
+  const [currentActivity, setCurrentActivity] = useState<string>('overview');
   
   // User Progress State  
-  const [userProgress, setUserProgress] = useState({
+  const [userProgress, setUserProgress] = useState<UserProgress>({
     completedLessons: [],
     vocabularyMastered: [],
     grammarCompleted: [],
@@ -150,13 +223,13 @@ const EnhancedSpanishLearningApp = () => {
   });
   
   // Activity States
-  const [flashcardState, setFlashcardState] = useState({
+  const [flashcardState, setFlashcardState] = useState<FlashcardState>({
     currentIndex: 0,
     isFlipped: false,
     showPronunciation: false
   });
   
-  const [dialogueState, setDialogueState] = useState({
+  const [dialogueState, setDialogueState] = useState<DialogueState>({
     currentLineIndex: 0,
     userAnswers: {},
     showTranslations: false,
@@ -164,9 +237,9 @@ const EnhancedSpanishLearningApp = () => {
   });
 
   // Audio & Recording
-  const [isRecording, setIsRecording] = useState(false);
-  const mediaRecorderRef = useRef(null);
-  const audioRef = useRef(null);
+  const [isRecording, setIsRecording] = useState<boolean>(false);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Load user progress on mount
   useEffect(() => {
@@ -206,14 +279,14 @@ const EnhancedSpanishLearningApp = () => {
     }
   };
 
-  const addXP = (amount) => {
+  const addXP = (amount: number) => {
     setUserProgress(prev => ({
       ...prev,
       xpPoints: prev.xpPoints + amount
     }));
   };
 
-  const markVocabularyMastered = (wordId) => {
+  const markVocabularyMastered = (wordId: number) => {
     setUserProgress(prev => ({
       ...prev,
       vocabularyMastered: [...new Set([...prev.vocabularyMastered, wordId])]
@@ -221,16 +294,8 @@ const EnhancedSpanishLearningApp = () => {
     addXP(10);
   };
 
-  const markLessonCompleted = (lessonId) => {
-    setUserProgress(prev => ({
-      ...prev,
-      completedLessons: [...new Set([...prev.completedLessons, lessonId])]
-    }));
-    addXP(50);
-  };
-
   // Text-to-Speech
-  const speakText = (text, lang = 'es-ES') => {
+  const speakText = (text: string, lang: string = 'es-ES') => {
     if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = lang;
@@ -246,7 +311,7 @@ const EnhancedSpanishLearningApp = () => {
       const mediaRecorder = new MediaRecorder(stream);
       mediaRecorderRef.current = mediaRecorder;
       
-      const audioChunks = [];
+      const audioChunks: Blob[] = [];
       mediaRecorder.ondataavailable = (event) => {
         audioChunks.push(event.data);
       };
@@ -270,7 +335,7 @@ const EnhancedSpanishLearningApp = () => {
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
-      mediaRecorderRef.current.stream.getTracks().forEach(track => track.stop());
+      mediaRecorderRef.current.stream.getTracks().forEach((track: MediaStreamTrack) => track.stop());
     }
   };
 
@@ -430,7 +495,7 @@ const EnhancedSpanishLearningApp = () => {
   };
 
   // Vocabulary Flashcards Component
-  const VocabularyFlashcards = ({ lesson }) => {
+  const VocabularyFlashcards = ({ lesson }: { lesson: Lesson }) => {
     const currentWord = lesson.vocabulary[flashcardState.currentIndex];
 
     const nextCard = () => {
@@ -451,7 +516,7 @@ const EnhancedSpanishLearningApp = () => {
       }));
     };
 
-    const handleMastered = (mastered) => {
+    const handleMastered = (mastered: boolean) => {
       if (mastered) {
         markVocabularyMastered(currentWord.id);
       }
@@ -566,7 +631,7 @@ const EnhancedSpanishLearningApp = () => {
             </button>
             
             <div className="flex gap-1">
-              {lesson.vocabulary.map((_, index) => (
+              {lesson.vocabulary.map((_: Vocabulary, index: number) => (
                 <div
                   key={index}
                   className={`w-3 h-3 rounded-full transition-colors ${
@@ -589,8 +654,8 @@ const EnhancedSpanishLearningApp = () => {
   };
 
   // Interactive Dialogue Component
-  const InteractiveDialogue = ({ lesson }) => {
-    const handleAnswerSelect = (lineIndex, answer) => {
+  const InteractiveDialogue = ({ lesson }: { lesson: Lesson }) => {
+    const handleAnswerSelect = (lineIndex: number, answer: string) => {
       const isCorrect = answer === lesson.dialogue.lines[lineIndex].blank;
       
       setDialogueState(prev => ({
@@ -654,7 +719,7 @@ const EnhancedSpanishLearningApp = () => {
           {/* Dialogue */}
           <div className="bg-white rounded-3xl p-8 shadow-2xl mb-8">
             <div className="space-y-6">
-              {lesson.dialogue.lines.map((line, index) => {
+              {lesson.dialogue.lines.map((line: DialogueLine, index: number) => {
                 const isCompleted = dialogueState.completedBlanks[index];
                 const isCurrent = index === dialogueState.currentLineIndex && !isCompleted;
                 
@@ -677,7 +742,7 @@ const EnhancedSpanishLearningApp = () => {
 
                     {/* Spanish Line with Blank */}
                     <div className="mb-3">
-                      {line.spanish.split('_____').map((part, partIndex) => (
+                      {line.spanish.split('_____').map((part: string, partIndex: number) => (
                         <span key={partIndex}>
                           {part}
                           {partIndex < line.spanish.split('_____').length - 1 && (
@@ -706,7 +771,7 @@ const EnhancedSpanishLearningApp = () => {
                     {/* Answer Options */}
                     {isCurrent && (
                       <div className="grid grid-cols-3 gap-3 mb-4">
-                        {line.options.map((option, optionIndex) => (
+                        {line.options.map((option: string, optionIndex: number) => (
                           <button
                             key={optionIndex}
                             onClick={() => handleAnswerSelect(index, option)}
@@ -774,10 +839,7 @@ const EnhancedSpanishLearningApp = () => {
   };
 
   // Grammar Component
-  const GrammarLesson = ({ lesson }) => {
-    const [currentRule, setCurrentRule] = useState(0);
-    const [quizMode, setQuizMode] = useState(false);
-    const [quizScore, setQuizScore] = useState(0);
+  const GrammarLesson = ({ lesson }: { lesson: Lesson }) => {
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-400 to-pink-500 p-4">
@@ -805,7 +867,7 @@ const EnhancedSpanishLearningApp = () => {
 
             {/* Grammar Rules */}
             <div className="space-y-6 mb-8">
-              {lesson.grammar.rules.map((rule, index) => (
+              {lesson.grammar.rules.map((rule: GrammarRule, index: number) => (
                 <div key={index} className="bg-purple-50 rounded-xl p-6">
                   <h3 className="text-xl font-bold text-purple-800 mb-2">{rule.concept}</h3>
                   <p className="text-gray-700 mb-3">{rule.usage}</p>
@@ -839,9 +901,9 @@ const EnhancedSpanishLearningApp = () => {
   };
 
   // Lesson Overview Component
-  const LessonOverview = ({ lesson }) => {
+  const LessonOverview = ({ lesson }: { lesson: Lesson }) => {
     const lessonProgress = {
-      vocabulary: lesson.vocabulary.filter(word => 
+      vocabulary: lesson.vocabulary.filter((word: Vocabulary) => 
         userProgress.vocabularyMastered.includes(word.id)
       ).length,
       dialogue: userProgress.dialoguesCompleted.includes(lesson.dialogue.title) ? 1 : 0,
