@@ -348,129 +348,203 @@ const EnhancedSpanishLearningApp = () => {
     );
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-2">
-              ¡Bienvenido! 🇪🇸
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute top-40 left-1/2 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Header Section */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full mb-6 shadow-2xl">
+              <span className="text-4xl">🇪🇸</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent mb-4">
+              ¡Bienvenido!
             </h1>
-            <p className="text-xl text-gray-600">Your Spanish learning journey continues...</p>
+            <p className="text-xl md:text-2xl text-gray-300 mb-2">Your Spanish Learning Journey</p>
+            <p className="text-lg text-gray-400">Master Spanish with interactive lessons, cultural insights, and AI-powered practice</p>
           </div>
 
-          {/* Progress Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
+          {/* Stats Overview - Enhanced Design */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
               <div className="flex items-center justify-between mb-4">
-                <Trophy className="w-8 h-8 text-yellow-500" />
-                <span className="text-2xl font-bold text-gray-800">{userProgress.xpPoints}</span>
+                <div className="p-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl shadow-lg">
+                  <Trophy className="w-8 h-8 text-white" />
+                </div>
+                <span className="text-3xl font-bold text-white">{userProgress.xpPoints}</span>
               </div>
-              <p className="text-gray-600 font-medium">XP Points</p>
+              <p className="text-gray-300 font-medium text-lg">XP Points</p>
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
+            <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
               <div className="flex items-center justify-between mb-4">
-                <Flame className="w-8 h-8 text-orange-500" />
-                <span className="text-2xl font-bold text-gray-800">{userProgress.currentStreak}</span>
+                <div className="p-3 bg-gradient-to-r from-orange-400 to-red-500 rounded-2xl shadow-lg">
+                  <Flame className="w-8 h-8 text-white" />
+                </div>
+                <span className="text-3xl font-bold text-white">{userProgress.currentStreak}</span>
               </div>
-              <p className="text-gray-600 font-medium">Day Streak</p>
+              <p className="text-gray-300 font-medium text-lg">Day Streak</p>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-red-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
+            <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
               <div className="flex items-center justify-between mb-4">
-                <Target className="w-8 h-8 text-green-500" />
-                <span className="text-2xl font-bold text-gray-800">{userProgress.completedLessons.length}</span>
+                <div className="p-3 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl shadow-lg">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+                <span className="text-3xl font-bold text-white">{userProgress.completedLessons.length}</span>
               </div>
-              <p className="text-gray-600 font-medium">Lessons Done</p>
+              <p className="text-gray-300 font-medium text-lg">Lessons Done</p>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-emerald-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
+            <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105">
               <div className="flex items-center justify-between mb-4">
-                <BookOpen className="w-8 h-8 text-blue-500" />
-                <span className="text-2xl font-bold text-gray-800">{userProgress.vocabularyMastered.length}</span>
+                <div className="p-3 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-2xl shadow-lg">
+                  <BookOpen className="w-8 h-8 text-white" />
+                </div>
+                <span className="text-3xl font-bold text-white">{userProgress.vocabularyMastered.length}</span>
               </div>
-              <p className="text-gray-600 font-medium">Words Mastered</p>
+              <p className="text-gray-300 font-medium text-lg">Words Mastered</p>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </div>
 
-          {/* Overall Progress */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg mb-8">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">Overall Progress</h3>
-            <div className="w-full bg-gray-200 rounded-full h-4 mb-4">
+          {/* Overall Progress - Enhanced */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 mb-12 shadow-2xl">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-3xl font-bold text-white flex items-center gap-3">
+                <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl">
+                  <Star className="w-6 h-6 text-white" />
+                </div>
+                Overall Progress
+              </h3>
+              <span className="text-2xl font-bold text-white">{Math.round(completedPercentage)}%</span>
+            </div>
+            
+            <div className="relative w-full bg-gray-700/50 rounded-full h-6 mb-6 overflow-hidden">
               <div 
-                className="bg-gradient-to-r from-green-500 to-blue-500 h-4 rounded-full transition-all duration-500"
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 rounded-full transition-all duration-1000 ease-out shadow-lg"
                 style={{ width: `${completedPercentage}%` }}
-              ></div>
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
+              </div>
             </div>
-            <p className="text-center text-gray-600">
-              {Math.round(completedPercentage)}% Complete • {userProgress.vocabularyMastered.length}/{totalVocabulary} words learned
-            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+              <div className="bg-white/5 rounded-2xl p-4">
+                <p className="text-2xl font-bold text-white">{userProgress.vocabularyMastered.length}/{totalVocabulary}</p>
+                <p className="text-gray-300">Words Learned</p>
+              </div>
+              <div className="bg-white/5 rounded-2xl p-4">
+                <p className="text-2xl font-bold text-white">{userProgress.completedLessons.length}/{totalLessons}</p>
+                <p className="text-gray-300">Lessons Completed</p>
+              </div>
+            </div>
           </div>
 
-          {/* Lesson Levels */}
+          {/* Lesson Levels - Enhanced Design */}
           {Object.entries(LESSON_STRUCTURE).map(([level, levelData]) => (
-            <div key={level} className="mb-8">
-              <h2 className={`text-3xl font-bold mb-6 bg-gradient-to-r ${levelData.color} bg-clip-text text-transparent`}>
-                {levelData.title}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div key={level} className="mb-12">
+              <div className="flex items-center gap-4 mb-8">
+                <div className={`p-4 bg-gradient-to-r ${levelData.color} rounded-2xl shadow-lg`}>
+                  <Brain className="w-8 h-8 text-white" />
+                </div>
+                <h2 className={`text-4xl font-bold bg-gradient-to-r ${levelData.color} bg-clip-text text-transparent`}>
+                  {levelData.title} Level
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                 {levelData.lessons.map((lesson, index) => {
                   const isCompleted = userProgress.completedLessons.includes(lesson.id);
                   const isLocked = index > 0 && !userProgress.completedLessons.includes(levelData.lessons[index - 1].id);
                   
                   return (
-                    <button
+                    <div
                       key={lesson.id}
+                      className={`group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl
+                        ${isLocked ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-white/20'}
+                        ${isCompleted ? 'ring-2 ring-green-400 bg-green-500/10' : ''}`}
                       onClick={() => !isLocked && setCurrentLesson(lesson)}
-                      disabled={isLocked}
-                      className={`relative bg-white rounded-2xl p-6 shadow-lg transition-all duration-300 text-left
-                        ${isLocked ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl hover:-translate-y-1'}
-                        ${isCompleted ? 'ring-2 ring-green-400' : ''}`}
                     >
-                      <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-xl font-bold text-gray-800">{lesson.title}</h3>
+                      {/* Status Badge */}
+                      <div className="absolute -top-3 -right-3">
                         {isLocked ? (
-                          <Lock className="w-6 h-6 text-gray-400" />
+                          <div className="p-2 bg-gray-600 rounded-full shadow-lg">
+                            <Lock className="w-6 h-6 text-white" />
+                          </div>
                         ) : isCompleted ? (
-                          <Check className="w-6 h-6 text-green-500" />
+                          <div className="p-2 bg-green-500 rounded-full shadow-lg">
+                            <Check className="w-6 h-6 text-white" />
+                          </div>
                         ) : (
-                          <Unlock className="w-6 h-6 text-blue-500" />
+                          <div className="p-2 bg-blue-500 rounded-full shadow-lg">
+                            <Unlock className="w-6 h-6 text-white" />
+                          </div>
                         )}
                       </div>
+
+                      {/* Lesson Icon */}
+                      <div className={`w-16 h-16 bg-gradient-to-r ${levelData.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
+                        <BookOpen className="w-8 h-8 text-white" />
+                      </div>
+
+                      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-yellow-300 transition-colors">
+                        {lesson.title}
+                      </h3>
                       
-                      <div className="space-y-2 text-sm text-gray-600">
-                        <div className="flex items-center gap-2">
-                          <BookOpen className="w-4 h-4" />
-                          <span>{lesson.vocabulary.length} new words</span>
+                      <div className="space-y-3 text-gray-300">
+                        <div className="flex items-center gap-3">
+                          <div className="p-1 bg-blue-500/20 rounded-lg">
+                            <BookOpen className="w-5 h-5 text-blue-400" />
+                          </div>
+                          <span className="font-medium">{lesson.vocabulary.length} new words</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Brain className="w-4 h-4" />
-                          <span>Grammar: {lesson.grammar.title}</span>
+                        <div className="flex items-center gap-3">
+                          <div className="p-1 bg-green-500/20 rounded-lg">
+                            <Brain className="w-5 h-5 text-green-400" />
+                          </div>
+                          <span className="font-medium">{lesson.grammar.title}</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <MessageCircle className="w-4 h-4" />
-                          <span>Dialogue: {lesson.dialogue.title}</span>
+                        <div className="flex items-center gap-3">
+                          <div className="p-1 bg-purple-500/20 rounded-lg">
+                            <MessageCircle className="w-5 h-5 text-purple-400" />
+                          </div>
+                          <span className="font-medium">{lesson.dialogue.title}</span>
                         </div>
                       </div>
                       
                       {isCompleted && (
-                        <div className="absolute -top-2 -right-2 bg-green-500 text-white rounded-full p-1">
-                          <Star className="w-4 h-4" />
+                        <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-full p-2 shadow-lg">
+                          <Star className="w-5 h-5" />
                         </div>
                       )}
-                    </button>
+
+                      {/* Hover Effect Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   );
                 })}
               </div>
             </div>
           ))}
 
-          {/* Cultural Corner */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center gap-2">
-              <Globe className="w-8 h-8 text-purple-500" />
-              Cultural Corner
-            </h3>
+          {/* Cultural Corner - Enhanced */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl mb-4 shadow-lg">
+                <Globe className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-3xl font-bold text-white mb-2">Cultural Corner</h3>
+              <p className="text-gray-300">Discover the rich culture behind the Spanish language</p>
+            </div>
             <CulturalFactCard />
           </div>
         </div>
@@ -483,13 +557,16 @@ const EnhancedSpanishLearningApp = () => {
     const [currentFact] = useState(CULTURAL_FACTS[Math.floor(Math.random() * CULTURAL_FACTS.length)]);
     
     return (
-      <div className="text-center max-w-2xl mx-auto">
-        <div className="text-6xl mb-4">{currentFact.emoji}</div>
-        <h4 className="text-2xl font-bold text-gray-800 mb-3">{currentFact.title}</h4>
-        <p className="text-lg text-gray-600 mb-4">{currentFact.content}</p>
-        <span className="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full font-medium">
+      <div className="text-center max-w-3xl mx-auto">
+        <div className="text-8xl mb-6 drop-shadow-lg">{currentFact.emoji}</div>
+        <h4 className="text-3xl font-bold text-white mb-4 bg-gradient-to-r from-yellow-400 to-pink-500 bg-clip-text text-transparent">
+          {currentFact.title}
+        </h4>
+        <p className="text-xl text-gray-300 mb-6 leading-relaxed">{currentFact.content}</p>
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-lg border border-purple-400/30 text-purple-200 px-6 py-3 rounded-full font-medium text-lg">
+          <Globe className="w-5 h-5" />
           {currentFact.country}
-        </span>
+        </div>
       </div>
     );
   };
@@ -915,90 +992,156 @@ const EnhancedSpanishLearningApp = () => {
     const progressPercentage = (totalProgress / maxProgress) * 100;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 p-4">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-12">
             <button
               onClick={() => setCurrentLesson(null)}
-              className="bg-white p-3 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+              className="group bg-white/10 backdrop-blur-lg p-4 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105"
             >
-              <ChevronLeft className="w-6 h-6 text-gray-600" />
+              <ChevronLeft className="w-6 h-6 text-white group-hover:text-yellow-300 transition-colors" />
             </button>
-            <h1 className="text-3xl font-bold text-gray-800">{lesson.title}</h1>
-            <div className="bg-white px-4 py-2 rounded-full shadow-lg">
-              <span className="text-sm font-medium text-gray-600">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent mb-2">
+                {lesson.title}
+              </h1>
+              <p className="text-gray-300 text-lg">Master this lesson step by step</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-lg px-6 py-3 rounded-2xl border border-white/20">
+              <span className="text-lg font-bold text-white">
                 {Math.round(progressPercentage)}% Complete
               </span>
             </div>
           </div>
 
-          {/* Progress Bar */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg mb-8">
-            <div className="w-full bg-gray-200 rounded-full h-3 mb-4">
-              <div 
-                className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-500"
-                style={{ width: `${progressPercentage}%` }}
-              ></div>
+          {/* Progress Bar - Enhanced */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 mb-12 shadow-2xl">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-white flex items-center gap-3">
+                <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl">
+                  <Target className="w-6 h-6 text-white" />
+                </div>
+                Lesson Progress
+              </h3>
+              <span className="text-xl font-bold text-white">{Math.round(progressPercentage)}%</span>
             </div>
-            <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <p className="text-2xl font-bold text-blue-500">{lessonProgress.vocabulary}/{lesson.vocabulary.length}</p>
-                <p className="text-sm text-gray-600">Vocabulary</p>
+            
+            <div className="relative w-full bg-gray-700/50 rounded-full h-6 mb-8 overflow-hidden">
+              <div 
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                style={{ width: `${progressPercentage}%` }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
               </div>
-              <div>
-                <p className="text-2xl font-bold text-green-500">{lessonProgress.grammar}/1</p>
-                <p className="text-sm text-gray-600">Grammar</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div className="bg-white/5 rounded-2xl p-6">
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <div className="p-2 bg-blue-500/20 rounded-lg">
+                    <BookOpen className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <p className="text-3xl font-bold text-white">{lessonProgress.vocabulary}/{lesson.vocabulary.length}</p>
+                </div>
+                <p className="text-gray-300 font-medium">Vocabulary</p>
               </div>
-              <div>
-                <p className="text-2xl font-bold text-purple-500">{lessonProgress.dialogue}/1</p>
-                <p className="text-sm text-gray-600">Dialogue</p>
+              <div className="bg-white/5 rounded-2xl p-6">
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <div className="p-2 bg-green-500/20 rounded-lg">
+                    <Brain className="w-6 h-6 text-green-400" />
+                  </div>
+                  <p className="text-3xl font-bold text-white">{lessonProgress.grammar}/1</p>
+                </div>
+                <p className="text-gray-300 font-medium">Grammar</p>
+              </div>
+              <div className="bg-white/5 rounded-2xl p-6">
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <div className="p-2 bg-purple-500/20 rounded-lg">
+                    <MessageCircle className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <p className="text-3xl font-bold text-white">{lessonProgress.dialogue}/1</p>
+                </div>
+                <p className="text-gray-300 font-medium">Dialogue</p>
               </div>
             </div>
           </div>
 
-          {/* Activity Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Activity Cards - Enhanced */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <button
               onClick={() => setCurrentActivity('vocabulary')}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+              className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
-              <BookOpen className="w-16 h-16 text-blue-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Vocabulary</h3>
-              <p className="text-gray-600 mb-4">Learn {lesson.vocabulary.length} new words</p>
-              <div className="bg-blue-100 rounded-full px-4 py-2">
-                <span className="text-blue-700 font-medium">
-                  {lessonProgress.vocabulary} mastered
-                </span>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <BookOpen className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors">Vocabulary</h3>
+                <p className="text-gray-300 mb-6 text-lg">Learn {lesson.vocabulary.length} new words with interactive flashcards</p>
+                <div className="bg-blue-500/20 rounded-2xl px-6 py-3 border border-blue-400/30">
+                  <span className="text-blue-200 font-medium text-lg">
+                    {lessonProgress.vocabulary} mastered
+                  </span>
+                </div>
               </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
 
             <button
               onClick={() => setCurrentActivity('grammar')}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+              className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
-              <Brain className="w-16 h-16 text-green-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Grammar</h3>
-              <p className="text-gray-600 mb-4">{lesson.grammar.title}</p>
-              <div className="bg-green-100 rounded-full px-4 py-2">
-                <span className="text-green-700 font-medium">
-                  {lessonProgress.grammar ? 'Completed' : 'Start Learning'}
-                </span>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <Brain className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors">Grammar</h3>
+                <p className="text-gray-300 mb-6 text-lg">{lesson.grammar.title}</p>
+                <div className={`rounded-2xl px-6 py-3 border ${
+                  lessonProgress.grammar 
+                    ? 'bg-green-500/20 border-green-400/30' 
+                    : 'bg-yellow-500/20 border-yellow-400/30'
+                }`}>
+                  <span className={`font-medium text-lg ${
+                    lessonProgress.grammar ? 'text-green-200' : 'text-yellow-200'
+                  }`}>
+                    {lessonProgress.grammar ? 'Completed' : 'Start Learning'}
+                  </span>
+                </div>
               </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
 
             <button
               onClick={() => setCurrentActivity('dialogue')}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+              className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
-              <MessageCircle className="w-16 h-16 text-purple-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Dialogue</h3>
-              <p className="text-gray-600 mb-4">{lesson.dialogue.title}</p>
-              <div className="bg-purple-100 rounded-full px-4 py-2">
-                <span className="text-purple-700 font-medium">
-                  {lessonProgress.dialogue ? 'Completed' : 'Practice Now'}
-                </span>
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <MessageCircle className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors">Dialogue</h3>
+                <p className="text-gray-300 mb-6 text-lg">{lesson.dialogue.title}</p>
+                <div className={`rounded-2xl px-6 py-3 border ${
+                  lessonProgress.dialogue 
+                    ? 'bg-purple-500/20 border-purple-400/30' 
+                    : 'bg-pink-500/20 border-pink-400/30'
+                }`}>
+                  <span className={`font-medium text-lg ${
+                    lessonProgress.dialogue ? 'text-purple-200' : 'text-pink-200'
+                  }`}>
+                    {lessonProgress.dialogue ? 'Completed' : 'Practice Now'}
+                  </span>
+                </div>
               </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
           </div>
         </div>
